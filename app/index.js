@@ -58,6 +58,7 @@ const StringDecoder = require("string_decoder").StringDecoder;
         var payloadStr = JSON.stringify(payload);
 
         // Return the response
+        res.setHeader("Content-Type", "application/json");
         res.writeHead(statusCode);
 
         res.end(payloadStr);
