@@ -2,6 +2,8 @@ const http = require("http");
 const port = process.env.PORT | 3500;
 const url = require("url");
 const StringDecoder = require("string_decoder").StringDecoder;
+const config = require("./config");
+
 (async () => {
   // the server should respond to all request with a string
   const server = http.createServer((req, res) => {
@@ -14,7 +16,6 @@ const StringDecoder = require("string_decoder").StringDecoder;
 
     // Get the query string as object
     const queryStringObject = parseUrl.query;
-
     // Get the http Method;
     const method = req.method.toLowerCase();
 
@@ -68,7 +69,10 @@ const StringDecoder = require("string_decoder").StringDecoder;
     });
   });
 
-  server.listen(port, () => console.log(`listenining on port: ${port}`));
+  // Start the server
+  server.listen(config.port, () =>
+    console.log(`listenining on port: ${config.port} in ${config.envName}  now`)
+  );
   // Define the handlers
   var handlers = {};
 
